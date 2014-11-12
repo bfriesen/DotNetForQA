@@ -8,22 +8,27 @@ namespace Pos
 {
     public class SalesTaxCalculator
     {
-        private readonly decimal _taxRate;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SalesTaxCalculator"/> class.
-        /// </summary>
-        /// <param name="taxRatePercent">
-        /// The tax rate percent. For example, 7.25M for 7.25%. Not 0.0725M.
-        /// </param>
-        public SalesTaxCalculator(decimal taxRatePercent)
+        public decimal Calculate(decimal amount, State state)
         {
-            _taxRate = taxRatePercent / 100;
-        }
+            decimal taxRate;
 
-        public decimal Calculate(decimal amount)
-        {
-            return amount * _taxRate;
+            switch (state)
+            {
+                case State.MI:
+                    taxRate = 0.06M;
+                    break;
+                case State.IL:
+                case State.NY:
+                    taxRate = 0.07M;
+                    break;
+                case State.TN:
+                    taxRate = 0.11M;
+                    break;
+                default:
+                    throw new Exception("bad state: " + state);
+            }
+
+            return amount * taxRate;
         }
     }
 }
