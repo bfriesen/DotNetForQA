@@ -77,6 +77,7 @@
             this.btnCalculateTax.TabIndex = 4;
             this.btnCalculateTax.Text = "Calculate Tax";
             this.btnCalculateTax.UseVisualStyleBackColor = true;
+            this.btnCalculateTax.Click += new System.EventHandler(this.btnCalculateTax_Click);
             // 
             // lblTax
             // 
@@ -96,7 +97,7 @@
             this.lblTaxAmount.TabIndex = 6;
             this.lblTaxAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Form1
+            // SalesTaxCalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -108,7 +109,7 @@
             this.Controls.Add(this.lblState);
             this.Controls.Add(this.txtAmount);
             this.Controls.Add(this.lblAmount);
-            this.Name = "Form1";
+            this.Name = "SalesTaxCalculatorForm";
             this.Text = "Sales Tax Calculator";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -16,5 +16,16 @@ namespace Pos.UI
         {
             InitializeComponent();
         }
+
+        private void btnCalculateTax_Click(object sender, EventArgs e)
+        {
+            decimal amount = decimal.Parse(txtAmount.Text);
+            State state = (State)Enum.Parse(typeof(State), txtState.Text);
+
+            SalesTaxCalculator calculator = new SalesTaxCalculator();
+            decimal salesTaxAmount = calculator.Calculate(amount, state);
+
+            lblTaxAmount.Text = salesTaxAmount.ToString("c");
+        }
     }
 }
