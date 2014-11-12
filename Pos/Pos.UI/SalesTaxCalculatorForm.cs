@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Pos.UI
 {
-    public partial class Form1 : Form
+    public partial class SalesTaxCalculatorForm : Form
     {
-        public Form1()
+        public SalesTaxCalculatorForm()
         {
             InitializeComponent();
         }
