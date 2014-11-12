@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pos", "Pos\Pos.csproj", "{2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pos.UI", "Pos.UI\Pos.UI.csproj", "{A8608AD0-C2B1-4582-8DD7-26FFCD4420DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pos.UnitTests", "Pos.UnitTests\Pos.UnitTests.csproj", "{0AB9E4D4-E115-41DE-8BB6-2BD4E4136DA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A8608AD0-C2B1-4582-8DD7-26FFCD4420DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8608AD0-C2B1-4582-8DD7-26FFCD4420DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8608AD0-C2B1-4582-8DD7-26FFCD4420DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AB9E4D4-E115-41DE-8BB6-2BD4E4136DA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AB9E4D4-E115-41DE-8BB6-2BD4E4136DA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AB9E4D4-E115-41DE-8BB6-2BD4E4136DA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AB9E4D4-E115-41DE-8BB6-2BD4E4136DA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
