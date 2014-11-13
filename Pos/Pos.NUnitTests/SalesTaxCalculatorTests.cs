@@ -10,15 +10,13 @@ namespace Pos.NUnitTests
     [TestFixture]
     public class SalesTaxCalculatorTests
     {
-        [TestCase(State.MI, 6)]
-        [TestCase(State.IL, 7)]
-        [TestCase(State.NY, 7)]
-        [TestCase(State.TN, 11)]
-        public void StatesUseTheAppropriateTaxRate(State state, int expectedTaxAmount)
+        [TestCase(100, State.MI, 6, TestName = "MichiganUsesSixPercentTaxRate")]
+        [TestCase(200, State.IL, 14, TestName = "IllinoisUsesSevenPercentTaxRate")]
+        [TestCase(100, State.NY, 7, TestName = "NewYorkUsesSevenPercentTaxRate")]
+        [TestCase(300, State.TN, 33, TestName = "TennesseeUsesElevenPercentTaxRate")]
+        public void StatesUseTheAppropriateTaxRate(int amount, State state, int expectedTaxAmount)
         {
             // Arrange
-            decimal amount = 100;
-
             SalesTaxCalculator calculator = new SalesTaxCalculator();
 
             // Act
@@ -32,13 +30,12 @@ namespace Pos.NUnitTests
         public void InvalidStateThrowsException()
         {
             // Arrange
-            State state = (State)(-1);
-            decimal amount = 1;
+            State invalidState = (State)(-1);
 
             SalesTaxCalculator calculator = new SalesTaxCalculator();
 
-            // Act
-            Assert.Throws(typeof(Exception), () => calculator.Calculate(amount, state));
+            // Act / Assert
+            Assert.That(() => calculator.Calculate(100, invalidState), Throws.Exception);
         }
     }
 }
