@@ -22,7 +22,7 @@ namespace Pos.UI
             decimal amount = decimal.Parse(txtAmount.Text);
             State state = (State)Enum.Parse(typeof(State), txtState.Text);
 
-            SalesTaxCalculator calculator = new SalesTaxCalculator();
+            SalesTaxCalculator calculator = new SalesTaxCalculator(new HardCodedSalesTaxRepository());
             decimal salesTaxAmount = calculator.Calculate(amount, state);
 
             lblTaxAmount.Text = salesTaxAmount.ToString("c");

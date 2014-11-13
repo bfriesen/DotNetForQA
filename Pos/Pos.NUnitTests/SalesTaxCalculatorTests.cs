@@ -17,7 +17,7 @@ namespace Pos.NUnitTests
         public void StatesUseTheAppropriateTaxRate(int amount, State state, int expectedTaxAmount)
         {
             // Arrange
-            SalesTaxCalculator calculator = new SalesTaxCalculator();
+            SalesTaxCalculator calculator = new SalesTaxCalculator(new HardCodedSalesTaxRepository());
 
             // Act
             decimal result = calculator.Calculate(amount, state);
@@ -32,7 +32,7 @@ namespace Pos.NUnitTests
             // Arrange
             State invalidState = (State)(-1);
 
-            SalesTaxCalculator calculator = new SalesTaxCalculator();
+            SalesTaxCalculator calculator = new SalesTaxCalculator(new HardCodedSalesTaxRepository());
 
             // Act / Assert
             Assert.That(() => calculator.Calculate(100, invalidState), Throws.Exception);
