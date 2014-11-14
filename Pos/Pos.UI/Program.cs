@@ -16,7 +16,7 @@ namespace Pos.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SalesTaxCalculatorForm());
+            Application.Run(new PosForm());
         }
     }
 }
