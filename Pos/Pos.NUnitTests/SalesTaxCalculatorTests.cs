@@ -10,32 +10,24 @@ namespace Pos.NUnitTests
     [TestFixture]
     public class SalesTaxCalculatorTests
     {
-        [TestCase(100, State.MI, 6, TestName = "MichiganUsesSixPercentTaxRate")]
-        [TestCase(200, State.IL, 14, TestName = "IllinoisUsesSevenPercentTaxRate")]
-        [TestCase(100, State.NY, 7, TestName = "NewYorkUsesSevenPercentTaxRate")]
-        [TestCase(300, State.TN, 33, TestName = "TennesseeUsesElevenPercentTaxRate")]
-        public void StatesUseTheAppropriateTaxRate(int amount, State state, int expectedTaxAmount)
+        [Test]
+        public void TheAmountIsMultipliedByTheTaxRateReturnedByTheSalesTaxRepository()
         {
-            // Arrange
-            SalesTaxCalculator calculator = new SalesTaxCalculator(new HardCodedSalesTaxRepository());
+            ISalesTaxRepository salesTaxRepository = new FakeSalesTaxRepository();
 
-            // Act
-            decimal result = calculator.Calculate(amount, state);
+            SalesTaxCalculator calculator = new SalesTaxCalculator(salesTaxRepository);
 
-            // Assert
-            Assert.That(result, Is.EqualTo(expectedTaxAmount));
+            decimal taxAmount = calculator.Calculate(100M, State.MI);
+
+            Assert.That(taxAmount, Is.EqualTo(6M));
         }
 
-        [Test]
-        public void InvalidStateThrowsException()
+        public class FakeSalesTaxRepository : ISalesTaxRepository
         {
-            // Arrange
-            State invalidState = (State)(-1);
-
-            SalesTaxCalculator calculator = new SalesTaxCalculator(new HardCodedSalesTaxRepository());
-
-            // Act / Assert
-            Assert.That(() => calculator.Calculate(100, invalidState), Throws.Exception);
+            public decimal GetTaxRate(State state)
+            {
+                return 0.06M;
+            }
         }
     }
 }

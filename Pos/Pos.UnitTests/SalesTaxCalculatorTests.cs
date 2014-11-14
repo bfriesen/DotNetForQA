@@ -7,81 +7,23 @@ namespace Pos.UnitTests
     public class SalesTaxCalculatorTests
     {
         [TestMethod]
-        public void MichiganUsesSixPercentTaxRate()
+        public void TheAmountIsMultipliedByTheTaxRateReturnedByTheSalesTaxRepository()
         {
-            // Arrange
-            State state = State.MI;
-            decimal amount = 100;
+            ISalesTaxRepository salesTaxRepository = new FakeSalesTaxRepository();
 
-            SalesTaxCalculator calculator = new SalesTaxCalculator(new HardCodedSalesTaxRepository());
+            SalesTaxCalculator calculator = new SalesTaxCalculator(salesTaxRepository);
 
-            // Act
-            decimal result = calculator.Calculate(amount, state);
+            decimal taxAmount = calculator.Calculate(100M, State.MI);
 
-            // Assert
-            Assert.AreEqual(6, result);
+            Assert.AreEqual(6M, taxAmount);
         }
 
-        [TestMethod]
-        public void IllinoisUsesSevenPercentTaxRate()
+        public class FakeSalesTaxRepository : ISalesTaxRepository
         {
-            // Arrange
-            State state = State.IL;
-            decimal amount = 100;
-
-            SalesTaxCalculator calculator = new SalesTaxCalculator(new HardCodedSalesTaxRepository());
-
-            // Act
-            decimal result = calculator.Calculate(amount, state);
-
-            // Assert
-            Assert.AreEqual(7, result);
-        }
-
-        [TestMethod]
-        public void NewYorkUsesSevenPercentTaxRate()
-        {
-            // Arrange
-            State state = State.NY;
-            decimal amount = 100;
-
-            SalesTaxCalculator calculator = new SalesTaxCalculator(new HardCodedSalesTaxRepository());
-
-            // Act
-            decimal result = calculator.Calculate(amount, state);
-
-            // Assert
-            Assert.AreEqual(7, result);
-        }
-
-        [TestMethod]
-        public void TennesseeUsesElevenPercentTaxRate()
-        {
-            // Arrange
-            State state = State.TN;
-            decimal amount = 1;
-
-            SalesTaxCalculator calculator = new SalesTaxCalculator(new HardCodedSalesTaxRepository());
-
-            // Act
-            decimal result = calculator.Calculate(amount, state);
-
-            // Assert
-            Assert.AreEqual(0.11M, result);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(Exception))]
-        public void InvalidStateThrowsException()
-        {
-            // Arrange
-            State state = (State)(-1);
-            decimal amount = 1;
-
-            SalesTaxCalculator calculator = new SalesTaxCalculator(new HardCodedSalesTaxRepository());
-
-            // Act
-            decimal result = calculator.Calculate(amount, state);
+            public decimal GetTaxRate(State state)
+            {
+                return 0.06M;
+            }
         }
     }
 }
